@@ -1,0 +1,448 @@
+\documentclass{article}
+
+\usepackage[english]{babel}
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=15pt plus 3pt minus 2pt
+  \thm@postskip=15pt plus 3pt minus 2pt 
+}
+\makeatother
+
+%\theoremstyle{plain}
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}{Lema}[section]
+\newtheorem{corollary}{Corolário}[section]
+\newtheorem{proposition}{Proposição}[section]
+%\theoremstyle{definition}
+\newtheorem{definition}{Definição}[section]
+\renewcommand{\proofname}{Demonstração}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+
+
+
+\title{Resumos de Álgebra Linear e Geometria Analítica}
+\author{João Pedro Costa do Lago}
+
+\begin{document}
+\maketitle
+
+\section{Espaços vetoriais}
+	\begin{definition}[Espaço Vetorial]
+		Seja E um conjunto não vazio, $\#$ uma operação interna em E,$\cdot$uma operação externa com os elementos de $\mathbb{K}$; diz-se (E,$\#$,$\cdot$) é um espaço vetorial sobre $\mathbb{K}$ se e só se:
+
+		\begin{enumerate}
+			\item a operação $\#$ é associativa, i.e., para quaisquer $u, v, w \in$ E se tem ($u\#v)\#w=u\#(v\#w)$
+
+			\item  $\exists$ $0_E$ para $\#$, i.e., $\exists$ $0_E$ $\in$ E: $\forall u \in$ E, se tem $0_E\#u=u\#$ $0_E=u$
+
+			\item $\forall u\in E $   $\exists u'$: $u\#u'=u'\#u=0_E$ (existência de simétrico)
+
+			\item a operação $\#$ é comutativa, i.e., $\forall u,v \in E $ se tem $u\# v= v\# u$
+
+			\item  A operação $\cdot$ é distributiva relativamente a $\#$, i.e., $\forall \alpha \in \mathbb{K}, u,v \in E$ se tem $\alpha \cdot(u \# v)=(\alpha \cdot u) \#(\alpha \cdot v)$
+
+			\item  A operação $\cdot$ é distributiva relativamente à adição de escalares, i.e., $\forall \alpha ,\beta \in \mathbb{K}, u \in E$, se tem $(\alpha \# \beta)\cdot u=(\alpha \cdot u)\#(\beta\cdot u)$; 
+
+			\item $\forall \alpha, \beta \in \mathbb{K}, u \in E$, se tem $(\alpha \beta) \cdot u=\alpha \cdot (\beta \cdot u)$ (associatividade mista)
+
+			\item $\forall u \in E$ se tem $1\cdot u=u$
+
+		\end{enumerate}
+	\end{definition}
+
+\subsection{Combinações lineares}
+	\begin{definition}[Combinação Linear]
+Sejam $(E,+,\cdot)$ um espaço vetorial sobre $\mathbb{K}$ e $u_1,\dots,u_n \in E;$ chamam-se combinações lineares de $u_1,\dots,u_n$ aos elementos da forma $\alpha_1 u_1+\dots+\alpha_n u_n$, com $\alpha_1,\dots, \alpha_n \in \mathbb{K}$.
+
+Diz-se que $u$ é combinação linear de $u_1,\dots,u_n$ com coeficientes $\alpha_1,\dots,\alpha_n$ se e só se $u=\alpha_1 u_1+\dots +\alpha_n u_n$. 
+
+	\end{definition}
+
+\subsection{Subespaços Vetoriais e Geradores}
+
+	\begin{definition}[Subespaço Vetorial]
+
+Sejam $(E,\#,\cdot)$ um espaço vetorial sobre $\mathbb{K}$ e $F$ um subconjunto não vazio de $E$.
+		\begin{itemize}
+  			\item Se a soma de quaisquer dois elementos de $F$ pertence a $F$, i.e., $\forall u, v \in F, u+v \in F$, então + define uma operação em $F$ e diz-se que $F$ é estável ou fechado para +
+  			\item Se o produto de qualquer elemento de $\mathbb{K}$ por qualquer elemento de $F$ pertence a $F$, i.e., se $\forall \alpha \in \mathbb{K}, u \in F, \alpha u \in F$, então $\cdot$ define uma operação em $F$ e diz-se que $F$ é estável ou fechado para $\cdot$
+\end{itemize}
+		Se $F$ for estável para + e $\cdot$ diz-se que $(F,+,\cdot)$ é um subespaço vetorial de $(E,+,\cdot)$ (geralmente diz-se só que $F$ é um subespaço de E).
+Diz-se que é um subespaço próprio se for diferente de E.
+
+	\end{definition}
+
+	\begin{proposition}
+Sejam $(E,+,\cdot)$ um espaço vetorial sobre $\mathbb{K}$ e $F$ um subconjunto não vazio de $E$ e estável para + e $\cdot$. $(F,+,\cdot)$ é um espaço vetorial.
+
+	\end{proposition}
+
+	\begin{proof}
+
+	Se $F$ é estável para $+,\cdot$, então F reúne todas as condições que a definição de espaço vetorial impõe (não esquecer que qualquer subconjunto de $E$ tem contido nele $0_E$).
+
+	\end{proof}
+
+	Observações:
+	
+	\begin{itemize}
+    \item Se $F$ é um subespaço de $E$, então $0_E \in F$
+    \item $E$ é um subespaço de $E$
+    \item ${0_E}$ é um subespaço de $E$ (subespaço trivial)
+	\end{itemize}
+
+	\begin{proposition}
+		Seja $E$ um espaço vetorial. A interseção de subespaços de $E$ é um subespaço de $E$.
+	\end{proposition}
+
+	\begin{proof}
+		Sejam $F_i, i\in I=\{1,\dots,i\}$ subespaços de um espaço vetorial $E$ sobre $\mathbb{K}$. $0_E \in F_i, \forall i \in I \implies 0_E \in \cap_{i \in I} F_i$.
+		Se $u,v \in \cap_{i \in I}F_i, u,v \in F_i,\forall i \in I$. Logo $u+v \in \cap_{i \in I}F_i$ e é estável para a adição(pois os subespaços $F_i,i \in I$ o são).
+		Se $u \in \cap_{i \in I}F_i$, tem-se que $u \in F_i, \forall i \in I$, portanto $\alpha u \in F_i, \alpha \in \mathbb{K}$, logo $\cap_{i\in I}F_i$ é estável para $\cdot$
+		Como $\cap_{i \in I}F_i$ é estável para + e para $\cdot$, podemos concluir que $\cap{i \in I}F_i$ também é um subespaço de E.
+
+	\end{proof}
+
+
+	\begin{proposition}
+		Se A é um subconjunto de $E$, $\exists$ um único subespaço vetorial $G(A)$ de $E$ que contém $A$ e é mínimo entre os subespaços de $E$ que contêm $A$, i.e., se $F$ é um subespaço de $E$ que contém A, então $G(A)\subset F$, e $G(A)$ é a interseção de todos os subespaços vetoriais de $E$ que contêm $A$.
+
+	\end{proposition}
+
+	\begin{proof}
+		Seja $E$ um espaço vetorial sobre $\mathbb{K}$, $F$ um subespaço genérico de $E$, $A$ um subconjunto de $E$ tal que $A\subset F$ e G(A) a interseção de todos os subespaços que contêm $A$.
+		Pela Proposição 1.2. podemos concluir que G(A) também é um subespaço e que este também contém A. 
+		Seja $H$ o mínimo dos subespaços de $E$ que contém A, ou seja $H\subset F$, para todo o $F$ que é subespaço de $E$ e contém $A$. 
+		A interseção de todos os subespaços de $E$ que contêm $A$ vai ser o próprio $H$, ou seja $H=G(A)$, logo concluimos que G(A) é o menor dos subespaços de $E$ que contém A.
+	\end{proof}	
+
+	\begin{definition}[Gerador]
+		Se $A$ é um subconjunto de $E$, chama-se subespaço gerado por A ao menor subespaço de $E$ que contém $A$.
+		Diz-se que $A$ gera $F$ se $F=G(A)$.
+
+	\end{definition}
+
+	\begin{proposition}
+		Sejam $E$ um espaço vetorial e $A$ um subconjunto não vazio de $E$; então $G(A)$ é o conjunto de todas as combinações lineares de elementos de $A$
+
+	\end{proposition}
+
+	\begin{proof}
+		Sejam $E$ um espaço vetorial, $A$ um subconjunto não vazio de $E$, $G(A)$ o menor subespaço de $E$ que contém $A$ e $H$ o conjunto de todas as combinações lineares dos elementos de $A$.
+		$H$ é não vazio, contém A e é estável para + e $\cdot$ (pois a soma de duas combinações lineares de $A$ é combinação linear de $A$, e o produto de uma constante por uma combinação linear de $A$ continua a ser combinação linear de $A$), logo é um subespaço de $E$. Como é um subespaço de $E$ que contém $A$, $G(A)\subset H$.
+		Como G(A) é um subespaço estável para + e $\cdot$ -- e $A\subset G(A)$ -- $G(A)$ contém todas as combinações lineares de $A$, ou seja, $H\subset G(A)$.
+		Como $H\subset G(A)$ e $G(A)\subset H$ podemos concluir que $H=G(A)$, portanto $G(A)$ é o conjunto de todas as combinações lineares de elementos de $A$.
+	
+	
+
+	\begin{definition}[Espaços finitamente gerados]
+		Diz-se que um espaço vetorial $(E,+,\cdot)$ é finitamente gerado ou de dimensão finita se e só se existe um conjunto finito que o gera; caso contrário diz-se que é de dimensão infinita.
+
+	\end{definition}
+
+	\begin{proposition}
+		Sejam $E$ um espaço vetorial e $A,B$ subconjuntos de $E$.
+		\begin{itemize}
+			\item $G(\emptyset)=\{0_E\}$
+    			\item Se $A$ é um subespaço vetorial de $E$, então $G(A)=A$.
+    			\item $G(G(A))=G(A)$
+    			\item $A\subset B \implies G(A) \subset G(B)$
+    			\item Se qualquer elemento de B é combinação linear de elementos de A, então $G(B)\subset G(A)$; se, além disso, $A\subset B$, então $G(A)=G(B)$.
+    			\item $G(A\cap B) \subset G(A)\cap G(B)$
+    			\item Tem-se $G({u_1,\dots,u_n,u})=G({u_1,\dots,u_n})$ se e só se $u \in G({u_1,\dots,u_n})$
+		\end{itemize}
+
+	\end{proposition}
+
+	\begin{proof}
+		\begin{itemize}
+			\item $G(\varnothing)$ é o subespaço que contém todos os elementos resultantes da combinação linear de nenhum elemento, que por sua vez é o elemento neutro ($0_E$).
+			\item $G(G(A))$ é o subespaço gerado pelo subespaço gerado por $A$. Este subespaço é igual a $G(A)$, pois a combinação linear de elementos que resultam da combinação linear de elementos de $A$ são elementos que podemos obter através da combinação linear de elementos de $A$.
+			\item Se $A\subset B$, a combinação linear dos elementos de $A$ vai estar contida na combinação linear dos elementos de B, ou seja, $G(A)\subset G(B)$.
+			\item Se qualquer elemento de $B$ é combinação linear de elementos de $A$, $B\subset A$, o que implica que $G(B)\subset G(A)$, como visto na prova anterior. Se $A\subset B$, então $A=B$, o que significa que $G(A)=G(B)$
+			\item $(A\cap B) \subset A \land (A\cap B) \subset B \implies G(A\cap B) \subset G(A) \land G(A\cap B) \subset G(B)\implies G(A\cap B)\subset G(A)\cap G(B)$
+			\item Se $u\in G(u_1,\dots,u_n)$, $u$ é combinação linear de $u_1,\dots,u_n$, ou seja, os elementos que são combinação linear de $u_1,\dots,u_n,u$ também são combinação linear de $u_1,\dots,u_n$, logo $G(u_1,\dots,u_n)=G(u_1,\dots,u_n,u).$
+			
+			Se $u\notin G(u_1,\dots,u_n)$, $u$ não é combinação linear de $u_1,\dots,u_n$, ou seja, os elementos que são combinação linear de $u_1,\dots,u_n,u$ não são combinação linear de $u_1,\dots,u_n$, logo $G(u_1,\dots,u_n)\neq G(u_1,\dots,u_n,u).$
+
+			
+		\end{itemize}	
+	\end{proof}
+
+\subsection{Somas e Somas Diretas de Subespaços}
+
+	\begin{definition}[Soma]
+
+		Seja E um espaço vetorial; se $A_1,\dots,A_n$ são subconjuntos de $E$, chama-se soma de $A_1,\dots,A_n$ ao conjunto: $\{u_1+\dots+u_n,u_1\in A_1, \dots,u_n \in A_n\}$ (notação: $A_1+\dots+A_n$) 
+
+	\end{definition}
+	\begin{definition}[Suplementares]
+		Sejam $E$ um espaço vetorial sobre $\mathbb{K}$ e $E_1,E_2$ subespaços de $E$; diz-se que $E_1 $ e $E_2$ são suplementares em E se e só se:
+		\begin{equation}
+			\begin{cases}
+ 			 	E_1 + E_2 = E \\
+  				E_1 \cap E_2 = {0_E}
+			\end{cases}
+		\end{equation}
+	\end{definition}
+	\begin{definition}[Soma direta]
+
+		Seja $E$ um subespaço vetorial sobre $\mathbb{K}$ e $E_1,\dots,E_k $ subespaços de E. Diz-se que $E$ é soma direta de $E_1,\dots,E_k $ se e só se qualquer elemento de $E$ se pode exprimir de maneira única como uma soma $u_1,\dots,u_k$, com $u_i \in E_i$.
+Notação: $E=E_1\oplus E_2\oplus \dots \oplus E_k$
+
+	\end{definition}
+
+	\begin{proposition}
+		Sejam $E$ um espaço vetorial sobre $\mathbb{K}$ e $E_1,E_2 $ subespaços de $E$; $E_1,E_2$ são suplementares em $E$ se e só se $E=E_1 \oplus E_2$
+	\end{proposition}
+	
+	\begin{proof}
+		Sejam $u$ elemento de $E_1$ e $v$ elemento de $E_2$.
+		Se $E=E_1\oplus E_2$, todos os elementos de E só se podem exprimir de uma única maneira como soma de $u + v$. Seja $w\in E_1\cap E_2$ e $w=u+v$, se $0_E=0_E+0_E' \implies 0_E=(-w)+(w)$,mas como cada elemento de $E$ só pode ser escrito de uma única maneira como soma de elementos de $E_1$ com elementos de $E_2$, concluimos que $w$ tem de ser necessariamente $0_E$, ou seja,  $E_1\cap E_2=\{0_E\}$ .  
+		Pelo descrito anteriormente, podemos concluir que $E_1\cap E_2=0_E$ e $E_1+E_2=E$, o que implica que $E_1$ e $E_2$ são suplementares.
+
+		Se $E_1$ e $E_2$ são suplementares, $E_1 + E_2 =E\land E_1\cap E_2=\{0_E\}$. Seja $w \in E$, $u \in E_1$ e $v\in E_2$, tal que, $w=u+v$. Se $w=u'+v'(u'\in E_1$ e $v'\in E_2), 0_E=(u-u')+(v-v')$. Como $u-u'\in E_1$, e o seu simétrico também, pois $E_1$ é estável para $\cdot$, e $(v-v')=(u-u')$ só é verdade quando ambos são iguais a $0_E$ , pois  $E_1$ e $E_2$ são suplementares($E_1\cap E_2=\{0_E\}$, então o único elemento que $E_1$ e $E_2$ têm em comum é $0_E$) , então temos $ u-u'=0_E\land v-v'=0_E\implies u=u'\land v=v'$, . Dito isto, podemos concluir que cada elemento de $E$ só pode ser escrito de uma única forma como soma de elementos de $E_1$ e de elementos de $E_2$, portanto podemos concluir que $E=E_1\oplus E_2$.
+	\end{proof}
+		
+\subsection{Dependência e Independência Linear}
+
+	\begin{definition}[Dependência Linear]
+		Sejam $E$ um espaço vetorial sobre $\mathbb{K}$ e $u_1,\dots,u_n \in E$.
+		\begin{itemize}
+    			\item Diz-se que $u_1,\dots,u_n$ são linearmente dependentes se e só se existem $\alpha_1,\dots,\alpha_n \in \mathbb{K}$, não todos nulos, tais que $\alpha_1 u_1 + \dots +\alpha_n u_n = 0_E$.
+			\item Diz-se que $u_1,\dots,u_n$ são linearmente independentes se e só se $\alpha_1 u_1 + \dots +\alpha_n u_n = 0_E \implies \alpha_1 = \dots =\alpha_n= 0_E$.
+		\end{itemize}
+	\end{definition}
+
+	\begin{proposition}
+		Sejam $E$ um espaço vetorial sobre $\mathbb{K}$ e $u_1,\dots,u_n$ elementos de $E$.
+		\begin{itemize}
+   		 \item Um elemento de um espaço vetorial é linearmente independente se e só se é não nulo.
+    		\item Se alguns dos $u_1,\dots,u_n$ é $0_E$, então $u_1,\dots,u_n$ são linearmente dependentes.
+    		\item Se $u_1,\dots,u_n$ são linearmente dependentes, então $u_1,\dots,u_n,\dots,u_k$ são linearmente dependentes.
+    		\item Se $u_1,\dots,u_n,\dots,u_k$ são linearmente independentes, então $u_1,\dots,u_n$ são linearmente independentes.
+		\end{itemize} 
+
+	\end{proposition}
+
+	\begin{proof}
+	   \begin{itemize}
+		\item Seja $u$ um vetor nulo. Se um elemento de um espaço vetorial é linearmente independente, este é não nulo, pois existem infinitos coeficientes $\alpha \in \mathbb{K}$ tais que $0_E=\alpha u$.
+		Se um vetor é nulo, este é linearmente dependente, provado de forma análoga à anterior.
+		\item Se algum dos $u_1,\dots,u_n$ é $0_E$, então, como já vimos na prova anterior, este é linearmente dependente, logo $u_1,\dots,u_n$ também são linearmente dependentes.
+		\item Se $u_1,\dots,u_n$ são linearmente independentes, então existem $\alpha_1,\dots,\alpha_n \in \mathbb{K}$, não todos nulos, tais que $0_E=\alpha_1 u_1+\dots+\alpha_n u_n$, logo vão existir $\alpha_1,\dots,\alpha_n,\dots,\alpha_k \in \mathbb{K}$, não todos nulos, mesmo $\alpha_{n+1},\dots,\alpha_k$ sendo todos nulos, tais que $0_E=\alpha_1 u_1+\dots+\alpha_n u_n+\dots+\alpha_k u_k$.
+		\item Forma análoga ao ponto anterior.
+
+	   \end{itemize} 
+	\end{proof}
+
+
+	\begin{proposition}
+		Sejam $E$ um espaço vetorial sobre $\mathbb{K}$ e $u_1,\dots,u_n$ elementos de $E$.
+		\begin{itemize}
+    		\item Os vetores $u_1,\dots,u_n$ são linearmente dependentes se e só se pelo menos algum deles é combinação linear dos restantes.
+    		\item Se $u_1,\dots,u_n$ são linearmente independentes e $u_1,\dots,u_n,u$ são linearmente dependentes, então $u$ é combinação linear de $u_1,\dots,u_n$.
+    		\item Se $u_1\neq0_E$ e $u_1,\dots,u_n$ são linearmente dependentes então algum $u_i$ é combinação linear dos anteriores.
+		\end{itemize}
+
+	\end{proposition}
+
+	\begin{proof}
+	    \begin{itemize}
+		    \item Se os vetores são linearmente dependentes, existem $\alpha_1,\dots,\alpha_n \in \mathbb{K}$, não todos nulos, tais que $0_E=\alpha_1 u_1+\dots+\alpha_n u_n$. Se $\alpha_k \neq 0$, então temos que $u_k=\frac{\alpha_1}{\alpha_k}u_1+\dots+\frac{\alpha_{k-1}}{\alpha_{k}}u_{k-1}+\frac{\alpha_{k+1}}{\alpha_{k}}u_{k+1}+\dots+\frac{\alpha_n}{\alpha_k}u_n$, portanto temos que pelo menos $u_k$ é combinação linear dos restantes. Se houver mais elementos de $u_1,\dots,u_n$ cujos coeficientes são diferentes de 0, esses elementos também são combinação linear dos restantes.
+		\item Se os vetores são linearmente independentes, existem $\alpha_1,\dots,\alpha_n \in \mathbb{K}$, todos nulos, tais que $0_E=\alpha_1 u_1+\dots+\alpha_n u_n$. Se adicionando um vetor $u, u_1,\dots,u_n$ são linearmente dependentes, então $\alpha_u \neq 0$, então temos que $u=\frac{\alpha_1}{\alpha_u}u_1+\dots+\frac{\alpha_n}{\alpha_u}u_n$, portanto temos que $u$ é combinação linear dos restantes. 
+		\item Se $u_1\neq0_E$ e $u_1,\dots,u_n$ são linearmente dependentes, então tem que haver pelo menos um $\alpha_2,\dots,\alpha_n \neq 0$. Seja $\alpha_k$ o último coeficiente diferente de 0 quando $0_E=\alpha_1 u_1+\dots+\alpha_n u_n$. Todos os elementos dede $u_{k+1}$ até $u_n$ vão ter coeficiente 0, logo $u_k$ pode ser escrito como combinação linear dos anteriores. Assim, podemos concluir que algum $u_i$ é combinação linear dos anteriores.
+	    \end{itemize}
+	\end{proof}
+
+	Chamada de atenção: $u_1,\dots,u_n$ linearmente dependentes não implica que cada um deles seja combinação linear dos restantes.
+
+
+	\begin{proposition}
+		Seja $E$ um espaço vetorial sobre $\mathbb{K}$.
+		Se $E$ é gerado por $k$ elementos, então quaisquer $k+1$ elementos de $E$ são linearmente dependentes.
+
+	\end{proposition}
+
+	\begin{proof}
+		Seja $E$ um espaço vetorial sobre $\K $ gerado por $k$ elementos $u_1,\dots,u_k$. Sejam $v_1,\dots,v_k,v_{k+1}$ elementos, não nulos, linearmente independentes pertencentes a E. $u_1,\dots,u_k$ geram $E$, logo $u_1,\dots,u_k,v_1$ são linearmente dependentes, então existe algum $u_k$ tal que este é combinação linear dos restantes, como provado na prova da Proposição 1.8. Trocando a ordem dos $u_i$, suponhamos que é $u_k$. Como $u_k$ é combinação linear dos restantes, podemos dizer que $v_1,u_1,\dots,u_{k-1}$ geram $E$. Adicionando $v_2$ a $v_1,u_1,\dots,u_{k-1}$ temos que $v_1,v_2,u_1,\dots,u_{k-1}$ são linearmente dependentes. Trocando novamente a ordem dos $u_i$, suponhamos que $u_{k-1}$ é um elemento que pode ser escrito como combinação linear dos antecedentes. Então temos que $v_1,v_2,u_1,\dots,u_{k-2}$ gera $E$. Repetimos este processo de adicionar elementos de $v_1,\dots,v_{k+1}$ e de remover elementos de $u_1,\dots,u_k$ até termos que $v_1,\dots,v_{k-1},u_1$ geram E. Ao adicionarmos $v_k$ a  $v_1,\dots,v_{k-1},u_1$ temos que $v_1,\dots,v_k,u_1$ são linearmente dependentes, ou seja, $u_1$ pode ser escrito como combinação linear de $v_1,\dots,v_k$ (pois $v_1,\dots,v_k$ são linearmente independentes), portanto temos que $v_1,\dots,v_k$ geram $E$. Se adicionarmos  $v_{k+1}$  teríamos que $v_1,\dots,v_{k+1}$ eram linearmente dependentes, mas isso não é possível, pois definimos $\{v_1,\dots,v_{k+1}\}$ como elementos linearmente independentes, ou seja, temos uma contradição, portanto quaisquer k+1 elementos de $E$ são linearmente dependentes.
+	\end{proof}
+
+
+	\begin{proposition}
+		Um espaço vetorial $E$ não é finitamente gerado se e só se existem famílias linearmente independentes com qualquer número de elementos.
+
+	\end{proposition}
+
+	\begin{corollary}
+		Se $E$ é um espaço vetorial finitamente gerado, então qualquer subespaço de $E$ é finitamente gerado.
+	\end{corollary}
+
+\subsection{Bases e coordenadas}
+
+	\begin{definition}[Base]
+
+		Sejam $E$ um espaço vetorial sobre $\mathbb{K}$ e $e_1,\dots,e_n \in E$.
+
+		Diz-se que ($e_1,\dots,e_n$) é uma base de $E$ se e só se $e_1,\dots,e_n$ são linearmente independentes e geram $E$.
+
+	\end{definition}
+
+	\begin{definition}[Coordenadas]
+
+		Seja $b=(e_1,\dots,e_n)$ uma base vetorial $E$; para cada $u\in E$, chamam-se coordenadas de $u$ na base $b$ aos (únicos) $\alpha_1,\alpha_2,\dots,\alpha_n \in \mathbb{K}:u=\alpha_1 e_1+\dots+\alpha_n e_n$; escreve-se $u=(\alpha_1,\dots,\alpha_n)_b$.
+
+	\end{definition}
+
+
+	\begin{proposition}
+
+		Qualquer família linearmente independente e maximal é uma base (uma família linearmente independente é maximal se acrescentando qualquer elemento se obtém uma família linearmente dependente, i.e., se não há nenhuma família linearmente independente que a contenha estritamente).
+
+	\end{proposition}
+
+	\begin{proof}
+		Sejam $F$ um espaço vetorial em $\mathbb{K}$, $D=\{u_1,\dots,u_n\}$ uma família linearmente independente e maximal que pertence a $F$ e $v \in F$ um elemento genérico.
+Se a família linearmente independente é maximal, então $u_1,\dots,u_n,v$ são linearmente dependentes. Assim podemos concluir que existem $\alpha_1,\dots,\alpha_n,\beta$, não todos nulos, tais que: $$
+		\alpha_1u_1+\dots+\alpha_nu_n+\beta v=0_E$$
+		Podemos concluir que $\beta \neq 0$, pois se $\beta=0$, os elementos $u_1,\dots,u_n$ seriam linearmente dependentes, o que vai contra a proposição. Assim, $\forall \ v \in F$, $v$ é combinação linear dos elementos de D, ou seja, D gera F, logo podemos concluir que D é uma base de F.
+	\end{proof}
+
+	\begin{proposition}
+	Qualquer família de geradores minimal é uma base (uma família de geradores é minimal se retirando qualquer elemento se deixa de ter uma família de geradores, i.e., se não há nenhuma família de geradores estritamente contida nela).
+
+	\end{proposition}
+
+	\begin{proof}
+		Sejam $F$ um espaço vetorial em $\mathbb{K}$, $D=\{u_1,\dots,u_n\}$ uma família minimal que pertence a $F$,ou seja, gera $F$.
+		Como a família é minimal, ao retirarmos $u_n$ não existe qualquer família de geradores contida em $\{
+		u_1,\dots,u_{n-1}\}$, portanto podemos concluir que $u_n$ não é combinação linear de $u_1,\dots,u_{n-1}$. Podíamos repetir este processo para todos os elementos em $D$, portanto isto leva-nos à conclusão que $u_1,\dots,u_n$ são linearmente independentes. Como os elementos da família D são linearmente independentes e geram $F$, podemos concluir que $D$ é uma base de $F$.
+		\end{proof}
+
+	\begin{definition}[Dimensão de um Espaço Vetorial]
+		Seja $E$ um espaço vetorial finitamente gerado. Se $E=\{0_E\}$, diz-se que a dimensão de $E$ é 0, caso contrário chama-se dimensão de $E$ ($\dim E$) ao número de elementos de qualquer base de E.
+	\end{definition}
+
+	\begin{proposition}
+		Seja $E$ um espaço vetorial não nulo finitamente gerado, $u_1,\dots,u_k \in E$ linearmente independentes, e $X$ um conjunto finito de geradores de $E$; então ou ($u_1,\dots,u_k$) é uma base de $E$ ou existem $u_{k+1},\dots,u_n \in X: (u_1,\dots,u_k,u_{k+1},\dots,u_n$) é uma base de E.
+
+	\end{proposition}
+
+	\begin{proof}
+		Se $u_1,\dots,u_n$ geram $E$, então $(u_1,\dots,u_n)$ é uma base de $E$.
+		Se $u_1,\dots,u_n$ não geram $E$, então é necessário adicionarmos mais elementos de forma a que formemos uma família linearmente independente maximal. Seja $D=\{u_1,\dots,u_n,\dots,u_k\}$ essa família linearmente independente maximal, então, como visto demonstração da Proposição 1.11., D é uma base de $E$.
+	\end{proof}
+
+	\begin{proposition}
+		Se $E$ é um espaço vetorial com mais de um elemento e $X$ é um conjunto que gera $E$, então existe uma base de $E$ contida em $X$.
+
+	\end{proposition}
+	\begin{proof}
+		Sejam $E$ é um espaço vetorial com mais de um elemento e $X=\{u_1,\dots,u_n\}$ um conjunto que gera $E$. Se $u_1,\dots,u_n$ são linearmente independentes, $X$ é uma base de $E$. Se $u_1,\dots,u_n$ são linearmente dependentes, então existe um $u_i$ que pode ser escrito como combinação linear dos restantes. Trocando a ordem dos elementos do conjunto $X$, seja esse  $u_n$ esse elemento. Se $u_1,\dots,u_{n-1}$ são linearmente independentes, então $\{u_1,\dots,u{n-1}\}$ é uma base de $E$. Caso contrário, é só repetir o processor de remover um elemento até ficarmos com um conjunto somente com elementos que são linearmente independentes. Assim, podemos concluir que ou $X$ é base de  $E$ ou elementos de $X$ formam uma base de $E$, portanto existe uma base de $E$ contida em $X$.
+	\end{proof}
+	\begin{corollary}
+
+		Qualquer espaço vetorial não nulo finitamente gerado tem uma base.
+
+	\end{corollary}
+
+	\begin{proposition}
+    		Seja $E$ um espaço vetorial finitamente gerado; quaisquer duas bases de 
+$E$ têm o mesmo número de elementos.
+
+	\end{proposition}
+
+	\begin{proof}
+    		Seja $E$ um espaço vetorial finitamente gerado de dimensão $n$. Um conjunto de elementos para ser uma base de um espaço vetorial tem de reunir duas características: os elementos serem linearmente independentes, e gerar o espaço vetorial. Para os elementos serem linearmente independentes, o conjunto tem que ter no máximo $n$ elementos, ver Prova da Proposição 1.9. Para o conjunto gerar $E$ tem de ter no mínimo $n$ elementos, pois se $E$ pudesse ser gerado por $n-1$ elementos, a sua dimensão seria $n-1$. Como um conjunto de elementos para ser base de um espaço vetorial $E$ com dimensão $n$ tem de ter no mínimo $n$ elementos e no máximo $n$ elementos, então tem de ter $n$ elementos, logo podemos concluir que duas bases têm de ter o mesmo número de elementos.
+	\end{proof}
+	
+	\begin{proposition}
+    		Seja E um espaço vetorial de dimensão $n$.
+		\begin{itemize}
+    		\item Qualquer conjunto de geradores tem pelo menos $n$ elementos.
+    		\item Qualquer família linearmente independente tem no máximo $n$ elementos.
+    		\item Qualquer família de geradores com $n$ elementos é uma base.
+    		\item Qualquer família linearmente independente com $n$ elementos é uma base.
+
+		\end{itemize}
+	\end{proposition}
+
+	\begin{proof}
+    		\begin{itemize}
+	    		\item Se um espaço vetorial tem dimensão $n$ então uma base desse espaço tem $n$ elementos. Ver prova da Proposição anterior. Então um conjunto de geradores tem que ter pelo menos n elementos linearmente independentes que geram $E$.
+			\item Se um espaço vetorial tem dimensão $n$ então uma base desse espaço tem $n$ elementos. Uma base gera todos os elementos de $E$, portanto qualquer elemento de $E$ pode ser escrito como combinação linear dos elementos de qualquer base de  $E$, logo não pode existir uma família linearmente independente com um número de elementos superior a $n$, pois uma família linearmente independente com $n$ elementos é uma base de $E$.
+			\item Se uma família de geradores (uma família que consegue gerar $E$) tem $n$ elementos, então esta tem de ser linearmente independente, pois $E$ tem dimensão $n$, ou seja, uma base de $E$ tem $n$ elementos. Como a família de geradores gera $E$ e todos os seus elementos são linearmente independentes, a família de geradores é uma base de $E$.
+			\item Uma família linearmente independente com $n$ elementos é uma base, pois o espaço vetorial $E$ tem dimensão $n$, ou seja, uma base de $E$ tem $n$ elementos, e como vimos na prova da demonstração anterior, todas as bases têm o mesmo número de elementos.
+    		\end{itemize}
+	\end{proof}
+
+
+\begin{corollary}
+    Se $E$ é um espaço vetorial finitamente gerado e $F$ é um subespaço de $E$, então:
+\begin{itemize}
+    \item $\dim F\leq $ $\dim E$
+    \item Se $\dim E=$ $\dim F$, então $F=E$
+\end{itemize}
+
+\end{corollary}
+
+\begin{proposition}
+  Sejam $E$ um espaço vetorial de dimensão finita sobre $\mathbb{K}$ e $E_1,E_2$ subespaços de $E$; então $\dim (E_1+E_2)=$ $\dim E_1$+ $\dim E_2$-$\dim E_1\cap E_2$.
+  
+\end{proposition}
+
+\begin{proof}
+    Vimos na aula, depois faço, é bué grande
+\end{proof}
+
+\begin{corollary}
+    Se $E_1$ e $E_2$ são subespaços suplementares num espaço vetorial de dimensão finita $E$,
+então $\dim E$ = $\dim E_1$ + $\dim E_2$.
+
+\end{corollary}
+
+\begin{proposition}
+    Sejam $E$ um espaço vetorial sobre $\mathbb{K}$, e $E_1, E_2,\dots, E_k$ subespaços de $E$ tais que: $E =
+E1 \oplus E2 \oplus \dots \oplus Ek$; se $b_1, b_2,\dots, b_k$ são bases
+respetivamente de $E_1, E_2,\dots, E_k$ e $B$ é formada pela “reunião” dos elementos de $b_1, b_2,\dots, b_k$,
+então $B$ é uma base de $E$.
+
+\end{proposition}
+\begin{proof}
+    Sejam $E$ um espaço vetorial sobre $\mathbb{K}$, e $E_1, E_2,\dots, E_k$ subespaços de $E$ tais que: $E =
+E1 \oplus E2 \oplus \dots \oplus Ek$. Uma base de $E$ é uma família de elementos linearmentes independentes que geram E. Seja D reunião dos elementos de $b_1,\dots,b_k$. Os elementos de D são linearmente independentes, pois elementos de outros subespaços $E_i$ não são combinação linear de elementos das bases $b_1,\dots,b_k$ exceto $b_i$. Os elementos de D geram $E$, pois qualquer elemento de E tem que pertencer a um subespaço $E_i$, então é gerado pela base $b_i\subset D$. Como todos os elementos de  $E$ são combinação linear de elementos de $D$, e os elementos de  $D$ são linearmente indepentes, podemos concluir que  $D$ é uma base de $E$.
+\end{proof}
+\begin{corollary}
+    Se $E$ é um espaço vetorial de dimensão finita sobre $\mathbb{K}$, e $E = E_1 \oplus E_2 \oplus \dots \oplus E_k$, então: $$\dim E = \sum^k_{i=1}\dim E_i$$
+
+\end{corollary}
+
+\begin{proposition}
+    Seja $E$ um espaço vetorial sobre $\mathbb{K}$ e $E_1$ um subespaço de $E$; existe um suplementar de $E_1$ em $E$
+    (o que é equivalente a existir $E_2$ tal que $E = E_1 \oplus E_2$).
+\end{proposition}
+\begin{proof}
+    Seja $E$ um espaço vetorial sobre $\mathbb{K}$ e $E_1$ um subespaço de $E$.
+    Se $E_1 = E$, então $E_2 = \{0_E\}$ é suplementar de $E_1$. Se $E_1 = \{0_E\}$, então $E_2 = E$ é suplementar de $E_1$.
+    Suponha-se agora que $E_1$ não é o subespaço trivial nem o próprio $E$. Seja $B_1 = \{u_1,\dots,u_m\}$ uma base de $E_1$. Como $B_1$ é uma família linearmente independente em $E$, pelo Teorema da Extensão de Bases, podemos completá-la com vetores $v_1,\dots,v_p \in E$ de modo a obter uma base de $E$: $B = \{u_1,\dots,u_m, v_1,\dots,v_p\}$.
+    Definindo $E_2 = \text{span}(v_1,\dots,v_p)$, tem-se que $E = E_1 + E_2$ e $E_1 \cap E_2 = \{0_E\}$, logo $E_2$ é um suplementar de $E_1$ em $E$, ou seja, $E = E_1 \oplus E_2$.
+\end{proof}
+
+
+\end{document}
+
